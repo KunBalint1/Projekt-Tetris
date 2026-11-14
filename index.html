@@ -9,37 +9,37 @@
     <title>Tetris</title>
 </head>
 
-<body>
+<body class="bg-dark text-white">
     <header class="text-center p-5">
         <h1>Tetris</h1>
     </header>
 
     <main>
         <section>
-            <div class="grid text-center container">
-                <div class="g-col-6">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-                                a facilis unde neque. Soluta dolorem, totam quas repellendus eos repudiandae est
-                                corporis recusandae ullam at id, sequi necessitatibus perspiciatis deleniti?
-                            </p>
-                            <p class="border" style="border-radius: 10px;">Rekord: <span class="Rekord">000</span></p>
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="card w-100 bg-dark text-white" style="border: 1px solid white;">
+                            <div class="card-body">
+                                <p class="card-text">A játék lényege, hogy a felülről lefelé hulló, négy kis négyzetből
+                                    álló alakzatokat a játékos forgathatja és oldalra mozgathatja, hogy vízszintes sorokat alkosson belőlük. Ha egy sor teljesen kitöltődik,
+                                    eltűnik, és pont jár érte. <br>
+                                    A nehézség folyamatosan nő, a játéknak pedig akkor van vége, amikor a lerakódott
+                                    blokkok elérik a képernyő tetejét.</p>
+                                <p class="border" style="padding: 10px; border-radius: 5px;">Rekord: <span class="rekord">000</span></p>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-6">
+                        <img src="" alt="logo">
+                    </div>
                 </div>
-                <div class="g-col-6">Logó</div>
-            </div>
-        </section>
-        <section>
-            <div class="container text-center">
-                <button type="button" class="btn btn-info btn-lg">Játék indítása!</button>
             </div>
         </section>
     </main>
 
-    <footer>
-
+    <footer class="text-center p-5">
+        <a href="jatek.html"><button type="button" class="btn btn-info btn-lg" target="_blank">Játék indítása</button></a>
     </footer>
 
     <script src="js/bootstrap.min.js"></script>
