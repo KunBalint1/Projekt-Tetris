@@ -13,16 +13,22 @@ body {
 }
 
 .fooldal, .card, .jatekOldal {
-    background-color: #f5f5dcc9;
+    background-image: url(../img/bg/card-bg.png);
     border-radius: 20px;
     border: 4px solid;
+    border-color: #8d0000;
+}
+
+.fooldal, .jatekOldal {
+    opacity: 95%;
 }
 
 .btn:hover {
-    color: #000;
-    background-color: #ffac64;
+    color: #ffffffde;
+    background-color: #8d0000;
 }
 
 .btn {
-    background-color: #fcbd86;
+    background-color: #ff0000f1;
+    color: #ffffff;
 }
