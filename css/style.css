@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=BBH+Bogle&family=Bungee&family=Science+Gothic:wght@100..900&family=Titan+One&display=swap');
+
+
+body {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-image: url(../img/bg/tetris-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.fooldal, .card, .jatekOldal {
+    background-color: #f5f5dcc9;
+    border-radius: 20px;
+    border: 4px solid;
+}
+
+.btn:hover {
+    color: #000;
+    background-color: #ffac64;
+}
+
+.btn {
+    background-color: #fcbd86;
+}

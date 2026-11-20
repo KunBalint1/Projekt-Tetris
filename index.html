@@ -9,38 +9,45 @@
     <title>Tetris</title>
 </head>
 
-<body class="bg-dark text-white">
-    <header class="text-center p-5">
-        <h1>Tetris</h1>
-    </header>
+<body class="p-5">
+    <div class="fooldal container">
+        <header class="text-center py-5">
+            <h1>Tetris</h1>
+        </header>
 
-    <main>
-        <section>
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-6">
-                        <div class="card w-100 bg-dark text-white" style="border: 1px solid white;">
-                            <div class="card-body">
-                                <p class="card-text">A játék lényege, hogy a felülről lefelé hulló, négy kis négyzetből
-                                    álló alakzatokat a játékos forgathatja és oldalra mozgathatja, hogy vízszintes sorokat alkosson belőlük. Ha egy sor teljesen kitöltődik,
-                                    eltűnik, és pont jár érte. <br>
-                                    A nehézség folyamatosan nő, a játéknak pedig akkor van vége, amikor a lerakódott
-                                    blokkok elérik a képernyő tetejét.</p>
-                                <p class="border" style="padding: 10px; border-radius: 5px;">Rekord: <span class="rekord">000</span></p>
+        <main>
+            <section>
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="card w-100 border-0">
+                                <div class="card-body">
+                                    <p class="card-text">A játék lényege, hogy a felülről lefelé hulló, négy kis
+                                        négyzetből
+                                        álló alakzatokat a játékos forgathatja és oldalra mozgathatja, hogy vízszintes
+                                        sorokat alkosson belőlük. Ha egy sor teljesen kitöltődik,
+                                        eltűnik, és pont jár érte. <br>
+                                        A nehézség folyamatosan nő, a játéknak pedig akkor van vége, amikor a lerakódott
+                                        blokkok elérik a képernyő tetejét.</p>
+                                    <p>Rekord: <span class="rekord">0</span></p>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-6">
+                            <img src="" alt="logo" title="logo">
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <img src="" alt="logo" title="logo">
-                    </div> 
+                    <div class="text-center p-5">
+                        <a href="jatek.html"><button type="button" class="btn btn-lg" target="_blank">Játék indítása</button></a>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
 
-    <footer class="text-center p-5">
-        <a href="jatek.html"><button type="button" class="btn btn-info btn-lg" target="_blank">Játék indítása</button></a>
-    </footer>
+        <footer class="text-center p-5">
+            <p>2026 &copy; Minden jog fenntartva! &bull; bankitatabanya.hu</p>
+        </footer>
+    </div>
 
     <script src="js/bootstrap.min.js"></script>
     <script src="js/blokkGeneral.js"></script>

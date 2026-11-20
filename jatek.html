@@ -9,21 +9,64 @@
     <title>Tetris játék</title>
 </head>
 
-<body class="bg-dark text-white">
-    <header class="text-center p-5">
-        <h1>Tetris játék</h1>
-        <p>Üdvözöljük a Tetris játékban!</p>
-    </header>
+<body class="p-5">
+    <div class="jatekOldal container">
+        <header class="text-center p-5">
+            <h1>Üdvözöljük a Tetris játékban!</h1>
+        </header>
 
-    <main>
-        <section class="text-center py-5">
+        <main>
+            <section class="text-center py-5">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <p>Játéktér</p>
+                        </div>
+                        <div class="col-6">
 
-        </section>
-    </main>
+                            <div class="card border-0">
+                                <div class="card-body">
+                                    <h5 class="card-title">Statisztika</h5>
+                                    <div class="row g-3">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h6 class="card-title fw-bold">Pontszám</h6>
+                                                    <p class="card-text small"><span class="pont">0</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
 
-    <footer class="text-center p-5">
-        <a href="index.html"><button type="button" class="btn btn-info btn-lg" target="_blank">Vissza a főoldalra</button></a>
-    </footer>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h6 class="card-title fw-bold">Rekord</h6>
+                                                    <p class="card-text small"><span class="rekord">0</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <button type="button" class="btn">Újrakezdés</button>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6">
+                                            <button type="button" class="btn">Szünet</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center p-5">
+            <a href="index.html"><button type="button" class="btn btn-lg" target="_blank">Vissza a
+                    főoldalra</button></a>
+        </footer>
+    </div>
 
 
     <script src="js/bootstrap.min.js"></script>
