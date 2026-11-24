@@ -1,5 +1,5 @@
 class Jatek {
-    #sorok = 40
+    #sorok = 4
     #oszlopok = 15
     #grid
     #pontszam = 0
@@ -38,7 +38,7 @@ class Jatek {
                 const oszlopIndex = blokk.x + c
                 if (sorIndex >= 0 && sorIndex < this.#sorok &&
                     oszlopIndex >= 0 && oszlopIndex < this.#oszlopok) {
-                    this.#grid[sorIndex][oszlopIndex] = 1
+                    this.#grid[sorIndex][oszlopIndex] = blokk.kepIndex + 1
                 }
             })
         })

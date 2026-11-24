@@ -9,6 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return
 
     const jatek = new Mozgatas(canvas)
+    const kockaKepek = []
+
+    for (let i = 1; i <= 7; i++) {
+        kockaKepek.push(`img/kockak/kocka${i}.png`)
+    }
+
+    jatek.setCellaKepek(kockaKepek)
     jatek.indit()
 
     document.addEventListener("keydown", esemeny => {

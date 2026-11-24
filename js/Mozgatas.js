@@ -7,21 +7,36 @@ class Mozgatas {
     #ido = null
     #szunetel = false
     #vege = false
+    #cellaKep = null
+    #cellaKepek = []
+    #kepSzam = 1
 
     constructor(canvas) {
         this.#kiiras = canvas.getContext("2d")
-        this.#jatekter = new Jatek(20, 10)
-        canvas.width = 300
+        this.#jatekter = new Jatek(12, 10)
+        canvas.width = 500
         canvas.height = 600
         this.#cellaSzelesseg = canvas.width / this.#jatekter.oszlopok
         this.#cellaMagassag = canvas.height / this.#jatekter.sorok
     }
 
+    setCellaKepek(utvonalak) {
+        this.#kepSzam = utvonalak.length
+        this.#cellaKepek = utvonalak.map(utvonal => {
+            const kep = new Image()
+            kep.onload = () => this.rajarol()
+            kep.onerror = () => kep.betoltve = false
+            kep.src = utvonal
+            kep.betoltve = true
+            return kep
+        })
+    }
+
     indit() {
-        this.#jatekter = new Jatek(20, 10)
+        this.#jatekter = new Jatek(12, 10)
         this.#szunetel = false
         this.#vege = false
-        this.#blokk = new blokk(this.#jatekter.oszlopok)
+        this.#blokk = new blokk(this.#jatekter.oszlopok, this.#kepSzam)
         this.frissitPontszamot()
 
         if (this.#ido)
@@ -82,7 +97,7 @@ class Mozgatas {
         this.#jatekter.ragadas(this.#blokk)
         this.#jatekter.sorTorol()
         this.frissitPontszamot()
-        this.#blokk = new blokk(this.#jatekter.oszlopok)
+        this.#blokk = new blokk(this.#jatekter.oszlopok, this.#kepSzam)
 
         if (this.#jatekter.utkozes(this.#blokk)) {
             this.#vege = true
@@ -106,7 +121,7 @@ class Mozgatas {
         for (let sor = 0; sor < this.#jatekter.sorok; sor++) {
             for (let oszlop = 0; oszlop < this.#jatekter.oszlopok; oszlop++) {
                 if (this.#jatekter.grid[sor][oszlop]) {
-                    this.#rajzolCella(oszlop, sor, "#d32f2f")
+                    this.#rajzolCella(oszlop, sor, this.#jatekter.grid[sor][oszlop])
                 }
             }
         }
@@ -115,7 +130,11 @@ class Mozgatas {
             this.#blokk.shape.forEach((sor, s) => {
                 sor.forEach((cella, c) => {
                     if (cella)
-                        this.#rajzolCella(this.#blokk.x + c, this.#blokk.y + s, "#ff0000")
+                        this.#rajzolCella(
+                            this.#blokk.x + c,
+                            this.#blokk.y + s,
+                            this.#blokk.kepIndex + 1
+                        )
                 })
             })
         }
@@ -146,13 +165,23 @@ class Mozgatas {
     }
 
     #rajzolCella(oszlop, sor, szin) {
-        this.#kiiras.fillStyle = szin
-        this.#kiiras.fillRect(
-            oszlop * this.#cellaSzelesseg + 1,
-            sor * this.#cellaMagassag + 1,
-            this.#cellaSzelesseg - 2,
-            this.#cellaMagassag - 2
-        )
+        const x = oszlop * this.#cellaSzelesseg + 1
+        const y = sor * this.#cellaMagassag + 1
+        const szelesseg = this.#cellaSzelesseg - 2
+        const magassag = this.#cellaMagassag - 2
+
+        const kepIndex = Math.max(0, Number(szin) - 1)
+        const kep = this.#cellaKepek[kepIndex]
+
+        if (kep && kep.complete && kep.naturalWidth > 0) {
+            this.#kiiras.drawImage(kep, x, y, szelesseg, magassag)
+        } else {
+            const tartalekSzinek = ["#d32f2f", "#1976d2", "#388e3c", "#fbc02d", "#7b1fa2", "#00796b", "#e64a19"]
+            this.#kiiras.fillStyle = typeof szin === "string"
+                ? szin
+                : tartalekSzinek[kepIndex % tartalekSzinek.length]
+            this.#kiiras.fillRect(x, y, szelesseg, magassag)
+        }
     }
 
     frissitPontszamot() {
