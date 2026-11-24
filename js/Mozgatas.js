@@ -25,6 +25,9 @@ class Mozgatas {
         this.frissitPontszamot()
         return sikeres
     }
+    szorzoVasarlas(){
+        return this.Vasarlas()
+    }
     setCellaKepek(utvonalak) {
         this.#kepSzam = utvonalak.length
         this.#cellaKepek = utvonalak.map(utvonal => {
@@ -45,10 +48,22 @@ class Mozgatas {
         this.frissitPontszamot()
 
         if (this.#ido)
-            clearInterval(this.#ido)
+            clearTimeout(this.#ido)
 
-        this.#ido = setInterval(() => this.leptet(), 500)
+        this.#jatekCiklus()
         this.rajarol()
+    }
+
+    #jatekCiklus() {
+        this.#ido = setTimeout(() => {
+            this.#ido = null
+
+            if (!this.#szunetel && !this.#vege)
+                this.leptet()
+
+            if (!this.#vege)
+                this.#jatekCiklus()
+        }, 500)
     }
 
     leptet() {
@@ -95,6 +110,11 @@ class Mozgatas {
             this.#blokk.move(0, 1)
         }
         this.ragad()
+        if (this.#ido)
+            clearTimeout(this.#ido)
+        this.#ido = null
+        if (!this.#vege)
+            this.#jatekCiklus()
         this.rajarol()
     }
 
@@ -106,7 +126,9 @@ class Mozgatas {
 
         if (this.#jatekter.utkozes(this.#blokk)) {
             this.#vege = true
-            clearInterval(this.#ido)
+            if (this.#ido)
+                clearTimeout(this.#ido)
+            this.#ido = null
         }
     }
 

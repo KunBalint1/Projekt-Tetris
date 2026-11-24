@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     var jatek = new Mozgatas(canvas)
     var kockaKepek = []
 
-    for (let i = 1; i <= 7; i++) {
-        kockaKepek.push(`img/blokk/blokk${i}.png`)
+    for (let i = 1; i <= 5; i++) {
+    kockaKepek.push(`img/blokk/blokk${i}.png`)
     }
 
     jatek.setCellaKepek(kockaKepek)

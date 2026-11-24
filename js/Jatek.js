@@ -47,7 +47,7 @@ class Jatek {
 
     sorTorol() {
         let toroltSorok = 0
-        this.#pontszam += toroltSorok * 100 * this.#szorzo
+       
 
         for (let i = this.#sorok - 1; i >= 0; i--) {
             if (this.#grid[i].every(cella => cella !== 0)) {
@@ -58,11 +58,11 @@ class Jatek {
             }
         }
 
-        this.#pontszam += toroltSorok * 100
+        this.#pontszam += toroltSorok * 100 * this.#szorzo
         return toroltSorok
     }
 
-    Vasarlas(){
+    szorzoVasarlas(){
         var ar = 500
 
         if (this.#pontszam < ar)
