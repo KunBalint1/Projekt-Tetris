@@ -3,6 +3,7 @@ class Jatek {
     #oszlopok = 15
     #grid
     #pontszam = 0
+    #szorzo = 1
 
     constructor(sorok, oszlopok) {
         this.#sorok = sorok
@@ -16,8 +17,8 @@ class Jatek {
                 if (!blokk.shape[i][j])
                     continue
 
-                const blokkx = x + j
-                const blokky = y + i
+                var blokkx = x + j
+                var blokky = y + i
 
                 if (blokkx < 0 || blokkx >= this.#oszlopok || blokky >= this.#sorok)
                     return true
@@ -34,8 +35,8 @@ class Jatek {
                 if (!cella)
                     return
 
-                const sorIndex = blokk.y + s
-                const oszlopIndex = blokk.x + c
+                var sorIndex = blokk.y + s
+                var oszlopIndex = blokk.x + c
                 if (sorIndex >= 0 && sorIndex < this.#sorok &&
                     oszlopIndex >= 0 && oszlopIndex < this.#oszlopok) {
                     this.#grid[sorIndex][oszlopIndex] = blokk.kepIndex + 1
@@ -46,6 +47,7 @@ class Jatek {
 
     sorTorol() {
         let toroltSorok = 0
+        this.#pontszam += toroltSorok * 100 * this.#szorzo
 
         for (let i = this.#sorok - 1; i >= 0; i--) {
             if (this.#grid[i].every(cella => cella !== 0)) {
@@ -59,6 +61,18 @@ class Jatek {
         this.#pontszam += toroltSorok * 100
         return toroltSorok
     }
+
+    Vasarlas(){
+        var ar = 500
+
+        if (this.#pontszam < ar)
+            return false
+
+        this.#pontszam -= ar
+        this.#szorzo++
+        return true
+    }
+
 
     get grid() {
         return this.#grid

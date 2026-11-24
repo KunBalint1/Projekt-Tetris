@@ -32,3 +32,14 @@ body {
     background-color: #ff0000bd;
     color: #ffffff;
 }
+
+.iranyitas .btn,
+.iranyitas .btn:hover,
+.iranyitas .btn:focus,
+.iranyitas .btn:active {
+    background-color: #ff0000bd;
+    color: #ffffff;
+    border: 0;
+    cursor: default;
+    box-shadow: none;
+}

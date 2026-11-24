@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const mentettRekord = localStorage.getItem("tetrisRekord") || 0
+    var mentettRekord = localStorage.getItem("tetrisRekord") || 0
     document.querySelectorAll(".rekord").forEach(elem => {
         elem.textContent = mentettRekord
     })
 
-    const canvas = document.getElementById("myCanvas")
+    var canvas = document.getElementById("myCanvas")
     if (!canvas)
         return
 
-    const jatek = new Mozgatas(canvas)
-    const kockaKepek = []
+    var jatek = new Mozgatas(canvas)
+    var kockaKepek = []
 
     for (let i = 1; i <= 7; i++) {
         kockaKepek.push(`img/blokk/blokk${i}.png`)
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    const gombok = document.querySelectorAll(".jatekOldal .btn")
+    var gombok = document.querySelectorAll(".jatekOldal .btn")
     gombok.forEach(gomb => {
         if (gomb.textContent.includes("Újrakezdés")) {
             gomb.addEventListener("click", () => {
@@ -52,4 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         }
     })
+
+    var szorzoGomb = document.querySelector(".szorzoGomb")
+
+    if (szorzoGomb) {
+        szorzoGomb.addEventListener("click", () => {
+            if (!jatek.szorzoVasarlas())
+                alert("Nincs elég pontod a fejlesztéshez.")
+        })
+    }
 })

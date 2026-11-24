@@ -20,10 +20,15 @@ class Mozgatas {
         this.#cellaMagassag = canvas.height / this.#jatekter.sorok
     }
 
+    Vasarlas(){
+        var sikeres = this.#jatekter.Vasarlas()
+        this.frissitPontszamot()
+        return sikeres
+    }
     setCellaKepek(utvonalak) {
         this.#kepSzam = utvonalak.length
         this.#cellaKepek = utvonalak.map(utvonal => {
-            const kep = new Image()
+            var kep = new Image()
             kep.onload = () => this.rajarol()
             kep.onerror = () => kep.betoltve = false
             kep.src = utvonal
@@ -165,29 +170,29 @@ class Mozgatas {
     }
 
     #rajzolCella(oszlop, sor, szin) {
-        const x = oszlop * this.#cellaSzelesseg + 1
-        const y = sor * this.#cellaMagassag + 1
-        const szelesseg = this.#cellaSzelesseg - 2
-        const magassag = this.#cellaMagassag - 2
+        var x = oszlop * this.#cellaSzelesseg + 1
+        var y = sor * this.#cellaMagassag + 1
+        var szelesseg = this.#cellaSzelesseg - 2
+        var magassag = this.#cellaMagassag - 2
 
-        const kepIndex = Math.max(0, Number(szin) - 1)
-        const kep = this.#cellaKepek[kepIndex]
+        var kepIndex = Math.max(0, Number(szin) - 1)
+        var kep = this.#cellaKepek[kepIndex]
 
         if (kep && kep.complete && kep.naturalWidth > 0) {
             this.#kiiras.drawImage(kep, x, y, szelesseg, magassag)
         }
-        
+
     }
 
     frissitPontszamot() {
-        const pontElem = document.querySelector(".pont")
+        var pontElem = document.querySelector(".pont")
         if (pontElem)
             pontElem.textContent = this.#jatekter.pontszam
 
-        const rekordElem = document.querySelector(".rekord")
+        var rekordElem = document.querySelector(".rekord")
         if (rekordElem) {
-            const elozoRekord = Number(localStorage.getItem("tetrisRekord") || 0)
-            const rekord = Math.max(elozoRekord, this.#jatekter.pontszam)
+            var elozoRekord = Number(localStorage.getItem("tetrisRekord") || 0)
+            var rekord = Math.max(elozoRekord, this.#jatekter.pontszam)
             localStorage.setItem("tetrisRekord", rekord)
             rekordElem.textContent = rekord
 

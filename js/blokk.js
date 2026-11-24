@@ -15,8 +15,8 @@ class blokk {
     #kepIndex
 
     constructor(jatekTer, kepSzam = 1){
-        const alakzatok = blokk.#ALAKZATOK
-        const veletlen = Math.floor(Math.random() * alakzatok.length)
+        var alakzatok = blokk.#ALAKZATOK
+        var veletlen = Math.floor(Math.random() * alakzatok.length)
         this.#alakzat = alakzatok[veletlen].map(sor => [...sor])
         this.#x = Math.floor((jatekTer - this.#alakzat[0].length) / 2)
         this.#y = 0
