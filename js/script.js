@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const kockaKepek = []
 
     for (let i = 1; i <= 7; i++) {
-        kockaKepek.push(`img/kockak/kocka${i}.png`)
+        kockaKepek.push(`img/blokk/blokk${i}.png`)
     }
 
     jatek.setCellaKepek(kockaKepek)

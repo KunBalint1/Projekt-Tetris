@@ -175,13 +175,8 @@ class Mozgatas {
 
         if (kep && kep.complete && kep.naturalWidth > 0) {
             this.#kiiras.drawImage(kep, x, y, szelesseg, magassag)
-        } else {
-            const tartalekSzinek = ["#d32f2f", "#1976d2", "#388e3c", "#fbc02d", "#7b1fa2", "#00796b", "#e64a19"]
-            this.#kiiras.fillStyle = typeof szin === "string"
-                ? szin
-                : tartalekSzinek[kepIndex % tartalekSzinek.length]
-            this.#kiiras.fillRect(x, y, szelesseg, magassag)
         }
+        
     }
 
     frissitPontszamot() {
