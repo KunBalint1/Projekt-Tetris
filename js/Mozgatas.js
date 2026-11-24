@@ -10,6 +10,8 @@ class Mozgatas {
     #cellaKep = null
     #cellaKepek = []
     #kepSzam = 1
+    #mentesek = 0
+    #lassitasVege = 0
 
     constructor(canvas) {
         this.#kiiras = canvas.getContext("2d")
@@ -20,13 +22,60 @@ class Mozgatas {
         this.#cellaMagassag = canvas.height / this.#jatekter.sorok
     }
 
-    Vasarlas(){
-        var sikeres = this.#jatekter.Vasarlas()
+    szorzoVasarlas() {
+        if (this.#vege || !this.#jatekter.szorzoVasarlas())
+            return false
+
         this.frissitPontszamot()
-        return sikeres
+        return true
     }
-    szorzoVasarlas(){
-        return this.Vasarlas()
+
+    sorBonuszVasarlas() {
+        if (this.#vege || !this.#jatekter.sorBonuszVasarlas())
+            return false
+
+        this.frissitPontszamot()
+        return true
+    }
+
+    lassitasVasarlas() {
+        if (this.#vege || !this.#jatekter.pontotLevon(500))
+            return false
+
+        this.#lassitasVege = Math.max(Date.now(), this.#lassitasVege) + 10000
+
+        if (this.#ido)
+            clearTimeout(this.#ido)
+
+        this.#ido = null
+        this.#jatekCiklus()
+        this.frissitPontszamot()
+        return true
+    }
+
+    kockaCsereVasarlas() {
+        if (this.#vege || !this.#blokk)
+            return false
+
+        const csere = new blokk(this.#jatekter.oszlopok, this.#kepSzam)
+        csere.setPosition(this.#blokk.x, this.#blokk.y)
+
+        if (this.#jatekter.utkozes(csere) || !this.#jatekter.pontotLevon(700))
+            return false
+
+        this.#blokk = csere
+        this.frissitPontszamot()
+        this.rajarol()
+        return true
+    }
+
+    mentesVasarlas() {
+        if (this.#vege || !this.#jatekter.pontotLevon(1000))
+            return false
+
+        this.#mentesek++
+        this.frissitPontszamot()
+        return true
     }
     setCellaKepek(utvonalak) {
         this.#kepSzam = utvonalak.length
@@ -46,15 +95,22 @@ class Mozgatas {
         this.#vege = false
         this.#blokk = new blokk(this.#jatekter.oszlopok, this.#kepSzam)
         this.frissitPontszamot()
+        this.#mentesek = 0
+        this.#lassitasVege = 0
 
-        if (this.#ido)
+
+        if (this.#ido) {
             clearTimeout(this.#ido)
-
+        }
+        this.#ujBlokk()
         this.#jatekCiklus()
         this.rajarol()
+
+
     }
 
     #jatekCiklus() {
+        var lepesIdo = Date.now() < this.#lassitasVege ? 1000 : 500
         this.#ido = setTimeout(() => {
             this.#ido = null
 
@@ -63,7 +119,7 @@ class Mozgatas {
 
             if (!this.#vege)
                 this.#jatekCiklus()
-        }, 500)
+        }, lepesIdo)
     }
 
     leptet() {
@@ -122,6 +178,7 @@ class Mozgatas {
         this.#jatekter.ragadas(this.#blokk)
         this.#jatekter.sorTorol()
         this.frissitPontszamot()
+        this.#ujBlokk()
         this.#blokk = new blokk(this.#jatekter.oszlopok, this.#kepSzam)
 
         if (this.#jatekter.utkozes(this.#blokk)) {
@@ -222,5 +279,25 @@ class Mozgatas {
                 elem.textContent = rekord
             })
         }
+    }
+
+    #ujBlokk() {
+        this.#blokk = new blokk(this.#jatekter.oszlopok, this.#kepSzam)
+
+        if (!this.#jatekter.utkozes(this.#blokk))
+            return
+
+        if (this.#mentesek > 0) {
+            this.#mentesek--
+            this.#jatekter.tablaTorol()
+            return
+        }
+
+        this.#vege = true
+
+        if (this.#ido)
+            clearTimeout(this.#ido)
+
+        this.#ido = null
     }
 }

@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var kockaKepek = []
 
     for (let i = 1; i <= 5; i++) {
-    kockaKepek.push(`img/blokk/blokk${i}.png`)
+        kockaKepek.push(`img/blokk/blokk${i}.png`)
     }
 
     jatek.setCellaKepek(kockaKepek)
@@ -61,4 +61,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Nincs elég pontod a fejlesztéshez.")
         })
     }
+
+    var fejlesztesek = [
+        [".szorzoGomb", () => jatek.szorzoVasarlas()],
+        [".sorBonuszGomb", () => jatek.sorBonuszVasarlas()],
+        [".lassitasGomb", () => jatek.lassitasVasarlas()],
+        [".kockaCsereGomb", () => jatek.kockaCsereVasarlas()],
+        [".mentesGomb", () => jatek.mentesVasarlas()]
+    ]
+
+    fejlesztesek.forEach(([selector, vasarlas]) => {
+        var gomb = document.querySelector(selector)
+
+        if (gomb) {
+            gomb.addEventListener("click", () => {
+                if (!vasarlas())
+                    alert("A vásárlás nem sikerült. Ellenőrizd a pontjaidat és a kocka helyét.")
+            })
+        }
+    })
 })

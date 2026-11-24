@@ -4,6 +4,7 @@ class Jatek {
     #grid
     #pontszam = 0
     #szorzo = 1
+    #sorBonusz = 0
 
     constructor(sorok, oszlopok) {
         this.#sorok = sorok
@@ -47,7 +48,7 @@ class Jatek {
 
     sorTorol() {
         let toroltSorok = 0
-       
+
 
         for (let i = this.#sorok - 1; i >= 0; i--) {
             if (this.#grid[i].every(cella => cella !== 0)) {
@@ -58,19 +59,39 @@ class Jatek {
             }
         }
 
-        this.#pontszam += toroltSorok * 100 * this.#szorzo
+        this.#pontszam += toroltSorok * (100 * this.#szorzo + this.#sorBonusz)
         return toroltSorok
     }
 
-    szorzoVasarlas(){
-        var ar = 500
-
+    pontotLevon(ar) {
         if (this.#pontszam < ar)
             return false
 
         this.#pontszam -= ar
+        return true
+    }
+
+    szorzoVasarlas() {
+        if (!this.pontotLevon(500))
+            return false
+
         this.#szorzo++
         return true
+    }
+
+    sorBonuszVasarlas() {
+        if (!this.pontotLevon(300))
+            return false
+
+        this.#sorBonusz += 50
+        return true
+    }
+
+    tablaTorol() {
+        this.#grid = Array.from(
+            { length: this.#sorok },
+            () => Array(this.#oszlopok).fill(0)
+        )
     }
 
 
