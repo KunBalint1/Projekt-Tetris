@@ -7,7 +7,6 @@ class blokk {
         [[0, 0, 1], [1, 1, 1]],  // L
         [[0, 1, 1], [1, 1, 0]],  // fordított Z
         [[1, 1, 0], [0, 1, 1]],  // Z
-
     ]
 
     #x
@@ -16,8 +15,31 @@ class blokk {
 
     constructor(jatekTer){
         const alakzatok = blokk.#ALAKZATOK
-        this.#alakzat = alakzatok[Math.floor(Math.random * alakzatok.length)]
+        const veletlen = Math.floor(Math.random() * alakzatok.length)
+        this.#alakzat = alakzatok[veletlen].map(sor => [...sor])
         this.#x = Math.floor((jatekTer - this.#alakzat[0].length) / 2)
-        this.#y
+        this.#y = 0
+    }
+
+    get x() {
+        return this.#x
+    }
+
+    get y() {
+        return this.#y
+    }
+
+    get shape() {
+        return this.#alakzat
+    }
+
+    move(x, y) {
+        this.#x += x
+        this.#y += y
+    }
+
+    setPosition(x, y) {
+        this.#x = x
+        this.#y = y
     }
 }

@@ -1,53 +1,78 @@
-class Jatek{
-    #sorok = 25
+class Jatek {
+    #sorok = 40
     #oszlopok = 15
-    #grid 
-    
-    constructor(sorok, oszlopok){
+    #grid
+    #pontszam = 0
+
+    constructor(sorok, oszlopok) {
         this.#sorok = sorok
         this.#oszlopok = oszlopok
-        this.#grid = Array.from({ length: sorok}, () => Array(cols).fill(0))
+        this.#grid = Array.from({ length: sorok }, () => Array(oszlopok).fill(0))
     }
 
-    utkozes(blokk, x = blokk.x, y = blokk.y){
-
+    utkozes(blokk, x = blokk.x, y = blokk.y) {
         for (let i = 0; i < blokk.shape.length; i++) {
             for (let j = 0; j < blokk.shape[i].length; j++) {
-                    if(!blokk.shape[i][j]) 
-                        continue
+                if (!blokk.shape[i][j])
+                    continue
 
-                    const blokkx = x + j
-                    const blokky = y + i
+                const blokkx = x + j
+                const blokky = y + i
 
-                    if (blokkx < 0 || blokkx >= this.#oszlopok || blokky >= this.#sorok) 
-                        return true
-                    if (blokky >= 0 && this.#grid[blokky][blokkx])
-                        return true
-            }   
+                if (blokkx < 0 || blokkx >= this.#oszlopok || blokky >= this.#sorok)
+                    return true
+                if (blokky >= 0 && this.#grid[blokky][blokkx])
+                    return true
+            }
         }
         return false
     }
 
-    ragadas(blokk){
-        blokk.shape.array.forEach(sor, s => {
+    ragadas(blokk) {
+        blokk.shape.forEach((sor, s) => {
             sor.forEach((cella, c) => {
-                if (cella) this.#grid[blokk.y + s][blokk.x + c] = 1
+                if (!cella)
+                    return
+
+                const sorIndex = blokk.y + s
+                const oszlopIndex = blokk.x + c
+                if (sorIndex >= 0 && sorIndex < this.#sorok &&
+                    oszlopIndex >= 0 && oszlopIndex < this.#oszlopok) {
+                    this.#grid[sorIndex][oszlopIndex] = 1
+                }
             })
-        });
+        })
     }
 
-    sorTorol(){
-        for (let i = this.#sorok; i >= 0 ; i++) {
-                if (this.#grid[i].every(cella => cella !== 0))
-                    this.#grid.splice(i, 1)
-                    this.#grid.unshift(Array(this.cols).fill(0)) // unshift a tömb elejére teszi a megadott blokkot/egyéb számot stb...
-                    i++
+    sorTorol() {
+        let toroltSorok = 0
+
+        for (let i = this.#sorok - 1; i >= 0; i--) {
+            if (this.#grid[i].every(cella => cella !== 0)) {
+                this.#grid.splice(i, 1)
+                this.#grid.unshift(Array(this.#oszlopok).fill(0))
+                toroltSorok++
+                i++
+            }
         }
+
+        this.#pontszam += toroltSorok * 100
+        return toroltSorok
     }
 
+    get grid() {
+        return this.#grid
+    }
 
+    get sorok() {
+        return this.#sorok
+    }
 
+    get oszlopok() {
+        return this.#oszlopok
+    }
 
-
-
+    get pontszam() {
+        return this.#pontszam
+    }
 }
