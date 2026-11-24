@@ -43,3 +43,17 @@ body {
     cursor: default;
     box-shadow: none;
 }
+
+.jatekCanvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+    .jatekOldal,
+    .fooldal {
+        border-radius: 12px;
+    }
+}
