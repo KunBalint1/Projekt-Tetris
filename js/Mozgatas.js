@@ -1,6 +1,6 @@
-class Mozgatas { 
-// Ha változtatni kellene a rácsozáson constructorban new jatek('sor', 'Oszlop'), ugyan így az indit() függvényben is. 
-// Ha méreten is, akkor jatek.html-ben canva height, width és itt is a constructorban. // ---- Nyíltnaphoz ----
+class Mozgatas {
+    // Ha változtatni kellene a rácsozáson constructorban new jatek('sor', 'Oszlop'), ugyan így az indit() függvényben is. 
+    // Ha méreten is, akkor jatek.html-ben canva height, width és itt is a constructorban. // ---- Nyíltnaphoz ----
     #kiiras
     #cellaSzelesseg
     #cellaMagassag
@@ -22,6 +22,36 @@ class Mozgatas {
         this.#cellaSzelesseg = canvas.width / this.#jatekter.oszlopok
         this.#cellaMagassag = canvas.height / this.#jatekter.sorok
     }
+
+    #rajzolSzellemkocka() {
+        var vetitesY = this.#blokk.y
+
+        while (!this.#jatekter.utkozes(
+            this.#blokk,
+            this.#blokk.x,
+            vetitesY + 1
+        )) {
+            vetitesY++
+        }
+
+        this.#kiiras.save()
+        this.#kiiras.globalAlpha = 0.3
+
+        this.#blokk.shape.forEach((sor, s) => {
+            sor.forEach((cella, c) => {
+                if (cella) {
+                    this.#rajzolCella(
+                        this.#blokk.x + c,
+                        vetitesY + s,
+                        this.#blokk.kepIndex + 1
+                    )
+                }
+            })
+        })
+
+        this.#kiiras.restore()
+    }
+
 
     szorzoVasarlas() {
         if (this.#vege || !this.#jatekter.szorzoVasarlas())
@@ -209,6 +239,22 @@ class Mozgatas {
                     this.#rajzolCella(oszlop, sor, this.#jatekter.grid[sor][oszlop])
                 }
             }
+        }
+
+        if (this.#blokk) {
+            this.#rajzolSzellemkocka()
+
+            this.#blokk.shape.forEach((sor, s) => {
+                sor.forEach((cella, c) => {
+                    if (cella) {
+                        this.#rajzolCella(
+                            this.#blokk.x + c,
+                            this.#blokk.y + s,
+                            this.#blokk.kepIndex + 1
+                        )
+                    }
+                })
+            })
         }
 
         if (this.#blokk) {
