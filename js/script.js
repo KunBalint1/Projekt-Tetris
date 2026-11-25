@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (gomb) {
             gomb.addEventListener("click", () => {
                 if (!vasarlas())
-                    alert("A vásárlás nem sikerült. Ellenőrizd a pontjaidat és a kocka helyét.")
+                    alert("Nincs elég pontod a fejlesztéshez.")
             })
         }
     })

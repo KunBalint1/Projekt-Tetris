@@ -57,7 +57,7 @@ class Mozgatas {
         if (this.#vege || !this.#blokk)
             return false
 
-        const csere = new blokk(this.#jatekter.oszlopok, this.#kepSzam)
+        var csere = new blokk(this.#jatekter.oszlopok, this.#kepSzam)
         csere.setPosition(this.#blokk.x, this.#blokk.y)
 
         if (this.#jatekter.utkozes(csere) || !this.#jatekter.pontotLevon(700))
