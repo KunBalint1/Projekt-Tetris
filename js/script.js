@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
     var jatek = new Mozgatas(canvas)
     var kockaKepek = []
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 16; i++) {
         kockaKepek.push(`img/blokk/blokk${i}.png`)
     }
 
     jatek.setCellaKepek(kockaKepek)
     jatek.indit()
 
-    document.addEventListener("keydown", esemeny => {
+    document.addEventListener("keydown", esemeny => { // Billentyűzet kiosztás
         if (esemeny.key === "ArrowLeft") {
             esemeny.preventDefault()
             jatek.oldalra(-1)
@@ -28,11 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (esemeny.key === "ArrowDown") {
             esemeny.preventDefault()
             jatek.gyorsLepes()
-        } else if (esemeny.key === " " || esemeny.key === "ArrowUp") {
+        } else if (esemeny.key === "ArrowUp") {
+            esemeny.preventDefault()
+            jatek.forgatas()
+        } else if (esemeny.key.toLowerCase() === " ") {
             esemeny.preventDefault()
             jatek.rogzit()
-        } else if (esemeny.key.toLowerCase() === "p") {
-            jatek.szunet()
         }
     })
 
@@ -41,13 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (gomb.textContent.includes("Újrakezdés")) {
             gomb.addEventListener("click", () => {
                 jatek.indit()
-                const szunetGomb = document.querySelector(".szunetGomb")
+                var szunetGomb = document.querySelector(".szunetGomb")
                 if (szunetGomb)
                     szunetGomb.textContent = "Szünet"
             })
         } else if (gomb.textContent.includes("Szünet")) {
             gomb.addEventListener("click", () => {
-                const szunetel = jatek.szunet()
+                var szunetel = jatek.szunet()
                 gomb.textContent = szunetel ? "Folytatás" : "Szünet"
             })
         }
@@ -58,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (szorzoGomb) {
         szorzoGomb.addEventListener("click", () => {
             if (!jatek.szorzoVasarlas())
-                alert("Nincs elég pontod a fejlesztéshez.")
+                uzenetMutat("Nincs elég pontod a fejlesztéshez.")
         })
     }
 
@@ -76,8 +77,23 @@ document.addEventListener("DOMContentLoaded", () => {
         if (gomb) {
             gomb.addEventListener("click", () => {
                 if (!vasarlas())
-                    alert("Nincs elég pontod a fejlesztéshez.")
+                    uzenetMutat("Nincs elég pontod a fejlesztéshez.")
             })
         }
     })
+
+
 })
+
+var toastElem = document.getElementById("gameToast")
+var toastBody = toastElem?.querySelector(".toast-body")
+
+if (!toastElem || !toastBody || !window.bootstrap?.Toast)
+    throw new Error("A Bootstrap toast értesítés nem található.")
+
+var gameToast = bootstrap.Toast.getOrCreateInstance(toastElem, { delay: 3000 })
+
+function uzenetMutat(szoveg) {
+    toastBody.textContent = szoveg
+    gameToast.show()
+}

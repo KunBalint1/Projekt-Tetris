@@ -1,4 +1,6 @@
-class Mozgatas {
+class Mozgatas { 
+// Ha változtatni kellene a rácsozáson constructorban new jatek('sor', 'Oszlop'), ugyan így az indit() függvényben is. 
+// Ha méreten is, akkor jatek.html-ben canva height, width és itt is a constructorban. // ---- Nyíltnaphoz ----
     #kiiras
     #cellaSzelesseg
     #cellaMagassag
@@ -7,7 +9,6 @@ class Mozgatas {
     #ido = null
     #szunetel = false
     #vege = false
-    #cellaKep = null
     #cellaKepek = []
     #kepSzam = 1
     #mentesek = 0
@@ -15,9 +16,9 @@ class Mozgatas {
 
     constructor(canvas) {
         this.#kiiras = canvas.getContext("2d")
-        this.#jatekter = new Jatek(12, 10)
-        canvas.width = 500
-        canvas.height = 600
+        this.#jatekter = new Jatek(20, 16)
+        canvas.width = 600
+        canvas.height = 800
         this.#cellaSzelesseg = canvas.width / this.#jatekter.oszlopok
         this.#cellaMagassag = canvas.height / this.#jatekter.sorok
     }
@@ -90,7 +91,7 @@ class Mozgatas {
     }
 
     indit() {
-        this.#jatekter = new Jatek(12, 10)
+        this.#jatekter = new Jatek(20, 16)
         this.#szunetel = false
         this.#vege = false
         this.#blokk = new blokk(this.#jatekter.oszlopok, this.#kepSzam)
@@ -280,6 +281,22 @@ class Mozgatas {
             })
         }
     }
+
+    forgatas() {
+        if (this.#szunetel || this.#vege) {
+            return
+        }
+
+        var regiAlakzat = this.#blokk.shape
+        this.#blokk.Beallit(this.#blokk.forgatAlakzat())
+
+        if (this.#jatekter.utkozes(this.#blokk))
+            this.#blokk.Beallit(regiAlakzat)
+
+        this.rajarol()
+    }
+
+
 
     #ujBlokk() {
         this.#blokk = new blokk(this.#jatekter.oszlopok, this.#kepSzam)

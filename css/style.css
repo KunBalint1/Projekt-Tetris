@@ -52,9 +52,30 @@ body {
     margin: 0 auto;
 }
 
+.btn:focus,
+.btn:active {
+    color: #fff;
+    background-color: #8d0000;
+    border-color: #8d0000;
+}
+
+.btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
 @media (max-width: 576px) {
     .jatekOldal,
     .fooldal {
         border-radius: 12px;
     }
+}
+
+#gameToast {
+    width: 400px;
+}
+
+#gameToast .toast-body {
+    padding: 1.25rem 1.5rem;
+    font-size: 1rem;
 }

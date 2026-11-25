@@ -21,11 +21,11 @@
                 <div class="container">
                     <div class="row text-center">
                         <div class="col-6">
-                            <canvas id="myCanvas" class="jatekCanvas" width="500" height="600"
+                            <canvas id="myCanvas" class="jatekCanvas" width="600" height="800"
                                 style="border: 1px solid #000;"></canvas>
                         </div>
                         <div class="col-6">
-                            <div class="card border-0 text-white h-75">
+                            <div class="card border-0 text-white h-100">
                                 <div class="card-body">
                                     <h5 class="card-title">Statisztika</h5>
                                     <div class="row g-3">
@@ -46,54 +46,78 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-sm-6">
-                                            <button type="button" class="btn ujraGomb">Újrakezdés</button>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6">
-                                            <button type="button" class="btn szunetGomb">Szünet</button>
-                                        </div>
-
                                         <div class="col-12">
-                                            <button type="button" class="btn sorBonuszGomb w-100">Sor-bónusz (300
-                                                pont)</button>
-                                        </div>
-                                        <div class="col-12">
-                                            <button type="button" class="btn szorzoGomb w-100">Szorzó fejlesztés (500
-                                                pont)</button>
-                                        </div>
-                                        <div class="col-12">
-                                            <button type="button" class="btn lassitasGomb w-100">Lassítás (500
-                                                pont)</button>
-                                        </div>
-                                        <div class="col-12">
-                                            <button type="button" class="btn kockaCsereGomb w-100">Kockacsere (700
-                                                pont)</button>
-                                        </div>
-                                        <div class="col-12">
-                                            <button type="button" class="btn mentesGomb w-100">Vészmentés (1000
-                                                pont)</button>
-                                        </div>
-                                        <div class="col-12 mt-4">
-                                            <h6 class="card-title fw-bold mb-3">Irányítás</h6>
-                                            <div class="iranyitas d-flex flex-wrap justify-content-center gap-2">
-                                                <span class="btn border-0" title="Mozgás balra">
-                                                    <i class="bi bi-arrow-left"></i>
-                                                    <small>Balra</small>
-                                                </span>
-                                                <span class="btn border-0" title="Mozgás lefelé">
-                                                    <i class="bi bi-arrow-down"></i>
-                                                    <small>Le</small>
-                                                </span>
-                                                <span class="btn border-0" title="Mozgás jobbra">
-                                                    <i class="bi bi-arrow-right"></i>
-                                                    <small>Jobbra</small>
-                                                </span>
-                                                <span class="btn border-0" title="Azonnali lerakás: fel vagy szóköz">
-                                                    <i class="bi bi-arrow-up"></i>
-                                                    <small>Lerakás</small>
-                                                </span>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="card-title fw-bold text-white p-3">Fejlesztések</h6>
+                                                    <div class="row g-3">
+                                                        <div class="col-12">
+                                                            <button type="button"
+                                                                class="btn sorBonuszGomb w-75">Sor-bónusz (300
+                                                                pont)</button>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="button" class="btn szorzoGomb w-75">Szorzó
+                                                                fejlesztés (500
+                                                                pont)</button>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="button" class="btn lassitasGomb w-75">Lassítás
+                                                                (500
+                                                                pont)</button>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="button"
+                                                                class="btn kockaCsereGomb w-75">Kockacsere (700
+                                                                pont)</button>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="button" class="btn mentesGomb w-75">Vészmentés
+                                                                (1000
+                                                                pont)</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="card-title fw-bold text-white">Irányítás</h6>
+                                                    <div class="col-12 mt-4">
+                                                        <div
+                                                            class="iranyitas d-flex flex-wrap justify-content-center gap-2">
+                                                            <span class="btn border-0" title="Mozgás balra">
+                                                                <i class="bi bi-arrow-left"></i>
+                                                                <small>Balra</small>
+                                                            </span>
+                                                            <span class="btn border-0" title="Mozgás lefelé">
+                                                                <i class="bi bi-arrow-down"></i>
+                                                                <small>Le</small>
+                                                            </span>
+                                                            <span class="btn border-0" title="Mozgás jobbra">
+                                                                <i class="bi bi-arrow-right"></i>
+                                                                <small>Jobbra</small>
+                                                            </span>
+                                                            <span class="btn border-0" title="Forgatás: fel nyíl">
+                                                                <i class="bi bi-arrow-up"></i>
+                                                                <small>Forgatás</small>
+                                                            </span>
+                                                            <span class="btn border-0" title="Azonnali lerakás: szóköz">
+                                                                <kbd>Space</kbd>
+                                                                <small>Lerakás</small>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <button type="button" class="btn btn-lg ujraGomb">Újrakezdés</button>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6">
+                                            <button type="button" class="btn btn-lg szunetGomb">Szünet</button>
                                         </div>
                                         <div class="pt-5">
                                             <a href="index.html"><button type="button" class="btn btn-lg"
@@ -110,8 +134,19 @@
         </main>
 
         <footer class="text-center p-5">
-
+            <p>2026 &copy; Minden jog fenntartva! &bull; bankitatabanya.hu</p>
         </footer>
+
+        <div class="toast-container position-fixed bottom-5 end-0 p-3" style="height: 5%;">
+            <div id="gameToast" class="toast text-bg-info text-white border-0" role="alert" aria-live="assertive"
+                aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body"></div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Bezárás"></button>
+                </div>
+            </div>
+        </div>
     </div>
 
 
